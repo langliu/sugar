@@ -1,8 +1,19 @@
-import { Hono } from "hono";
+import { Hono, HonoRequest } from "hono";
+import 'dotenv/config';
+import { drizzle } from 'drizzle-orm/d1';
 
-const app = new Hono();
+export type Env ={
+  DB: D1Database;
+}
 
-app.get("/", (c) => c.text("Hello, This is Hono !!!"));
+const app = new Hono<{ Bindings: Env }>();
+
+app.get("/", (c) => {
+  const db = drizzle(c.env.DB);
+  return c.json({
+    message: "Hello, This is Hono !!!",
+  });
+});
 
 export default {
   fetch: app.fetch,

@@ -1,0 +1,16 @@
+{
+  "name": "sugar",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-09-26",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sugar",
+      "database_id": "f86ef7c8-8361-4632-b142-9e2862881302",
+      "migrations_dir": "drizzle/migrations"
+    }
+  ]
+}

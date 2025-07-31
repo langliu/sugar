@@ -4,6 +4,9 @@
 node_modules
 .pnp
 .pnp.js
+dist
+.wrangler
+.dev.vars
 
 # Local env files
 .env
