@@ -1,8 +1,9 @@
-import { Hono, HonoRequest } from "hono";
+import { Hono } from "hono";
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/d1';
+import { posts } from './db/schema';
 
-export type Env ={
+export type Env = {
   DB: D1Database;
 }
 
@@ -15,7 +16,10 @@ app.get("/", (c) => {
   });
 });
 
-export default {
-  fetch: app.fetch,
-  port: 4200
-};
+app.get("/posts", async (c) => {
+  const db = drizzle(c.env.DB);
+  const res = await db.select().from(posts).all();
+  return c.json(res);
+});
+
+export default app;
